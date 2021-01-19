@@ -2,7 +2,7 @@ import React, {useReducer} from 'react'
 import reducer, {initialState} from './reducers/index'
 import ToDoList from './components/ToDoList'
 import ToDoForm from './components/ToDoForm'
-import {setInputValue, addToDo,  setToDoList} from './actions/index'
+import {setInputValue, addToDo,  setToDoList, toggleCompleted, clearCompleted} from './actions/index'
 import './App.css';
 
 function App() {
@@ -18,25 +18,14 @@ function App() {
     dispatch(setInputValue(''))
 
   }
-  const handleToggle = (taskId) => {
-    dispatch(setToDoList(
-      toDoData.map(task => {
-        if(task.id === taskId){
-          return {
-            ...task,
-            completed: !task.completed
-          }
-        }
-        return task
-      })
-    ))
-  }
+  
 
   const handleCompleted = () => {
-    const newToDoList = toDoData.filter(task => {
-      return (!task.completed)
-    })
-    dispatch(setToDoList(newToDoList))
+    dispatch(clearCompleted())
+  }
+
+  const handleToggle = (taskId) => {
+    dispatch(toggleCompleted(taskId))
   }
 
   return (
