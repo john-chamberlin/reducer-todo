@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+.item {
+  text-decoration: none;
+  
+}
+
+.item.completed {
+  text-decoration: line-through;
+  color:pink
+}
